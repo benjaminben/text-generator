@@ -15,13 +15,13 @@ from RNN_utils import *
 
 # Parsing arguments for Network definition
 ap = argparse.ArgumentParser()
-ap.add_argument('-data_dir', default='./data/travolta.txt')
+ap.add_argument('-data_dir', default='./data/test.txt')
 ap.add_argument('-batch_size', type=int, default=50)
 ap.add_argument('-layer_num', type=int, default=2)
 ap.add_argument('-seq_length', type=int, default=50)
 ap.add_argument('-hidden_dim', type=int, default=500)
 ap.add_argument('-generate_length', type=int, default=500)
-ap.add_argument('-nb_epoch', type=int, default=20)
+ap.add_argument('-epochs', type=int, default=20)
 ap.add_argument('-mode', default='train')
 ap.add_argument('-weights', default='')
 args = vars(ap.parse_args())
@@ -60,7 +60,7 @@ else:
 if args['mode'] == 'train' or WEIGHTS == '':
   while True:
     print('\n\nEpoch: {}\n'.format(nb_epoch))
-    model.fit(X, y, batch_size=BATCH_SIZE, verbose=1, nb_epoch=1)
+    model.fit(X, y, batch_size=BATCH_SIZE, verbose=1, epochs=1)
     nb_epoch += 1
     generate_text(model, GENERATE_LENGTH, VOCAB_SIZE, ix_to_char)
     if nb_epoch % 10 == 0:
