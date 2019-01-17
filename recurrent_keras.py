@@ -1,4 +1,7 @@
 from __future__ import print_function
+import matplotlib as mpl
+mpl.use('TkAgg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 import time
@@ -12,7 +15,7 @@ from RNN_utils import *
 
 # Parsing arguments for Network definition
 ap = argparse.ArgumentParser()
-ap.add_argument('-data_dir', default='./data/test.txt')
+ap.add_argument('-data_dir', default='./data/travolta.txt')
 ap.add_argument('-batch_size', type=int, default=50)
 ap.add_argument('-layer_num', type=int, default=2)
 ap.add_argument('-seq_length', type=int, default=50)
@@ -33,7 +36,7 @@ GENERATE_LENGTH = args['generate_length']
 LAYER_NUM = args['layer_num']
 
 # Creating training data
-X, y, VOCAB_SIZE, ix_to_char = load_data(DATA_DIR, SEQ_LENGTH)
+X, y, VOCAB_SIZE, ix_to_char = load_data(DATA_DIR, int(SEQ_LENGTH))
 
 # Creating and compiling the Network
 model = Sequential()
